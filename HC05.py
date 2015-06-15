@@ -203,3 +203,40 @@ class HC05:
 		if self.readline() == OK:
 			return True
 		return False
+
+	def getpolar(self):
+		self.writeline('AT+POLAR?')
+		ret = self.readline()
+
+		if self.readline() == OK:
+			return ret[7:-2]
+		return None
+
+	def setpolar(self, params):
+		self.writeline('AT+POLAR=' + str(params[0]) + ',' + str(params[1]))
+
+		if self.readline() == OK:
+			return True
+		return False
+
+	def setsinglepio(self, params):
+		self.writeline('AT+PIO=' + str(params[0]) + ',' + str(params[1]))
+
+		if self.readline() == OK:
+			return True
+		return False
+
+	def setmultiplepio(self, mask):
+		self.writeline('AT+MPIO=' + str(mask))
+
+		if self.readline() == OK:
+			return True
+		return False
+
+	def getmultiplepio(self):
+		self.writeline('AT+MPIO?')
+		ret = self.readline()
+
+		if self.readline() == OK:
+			return ret[6:-2]
+		return None
