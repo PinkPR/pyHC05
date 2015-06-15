@@ -14,7 +14,7 @@ class HC05:
 		return self.serial.readline()
 
 	def test(self):
-		self.serial.writeline('AT')
+		self.writeline('AT')
 		ret = self.readline()
 
 		if ret == OK:
